@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> HOTEL Amanecer</title>
+    <title>Hotel Viñas Queirolo</title>
 
 	<!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
@@ -30,7 +30,7 @@
         <nav class="navbar navbar-default top-navbar" role="navigation">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-                    <span class="sr-only">Navegación de palanca</span>
+                    <span class="sr-only"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -104,7 +104,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Nombre</th>
-                                                <th> Tipo de habitación</th>
+                                                <th>Tipo de habitación</th>
                                                 <th>Tipo de cama</th>
                                                 <th>Registrarse</th>
                                                 <th>Revisa</th>
@@ -122,8 +122,11 @@
                                             
                                         <?php
                                             include ('db.php');
-                                            $sql="select * from payment";
+                                            $sql="SELECT C.trato, C.nombres, C.apellidos, R.nro_habitacion, H.tipo_habitacion, H.tipo_cama, R.fecha_entrada, R.fecha_salida, R.comidas, P.*
+                                                  FROM `pagos` P INNER JOIN `reservas` R ON P.id_reserva = R.id INNER JOIN `clientes` C ON R.id_cliente = C.id INNER JOIN `habitaciones` H ON H.id = R.nro_habitacion;";
+                                            
                                             $re = mysqli_query($con,$sql);
+
                                             while($row = mysqli_fetch_array($re)) {
                                             
                                                 $id = $row['id'];
@@ -147,8 +150,7 @@
                                                         <td>".$row['btot']."</td>
                                                         <td>".$row['fintot']."</td>
                                                         <td><a href=print.php?pid=".$id ." <button class='btn btn-primary'> <i class='fa fa-print' ></i>Imprimir</button></td>
-                                                        </tr>";
-                                                
+                                                    </tr>";
                                             }
                                         ?>
                                         </tbody>

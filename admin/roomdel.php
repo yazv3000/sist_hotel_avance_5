@@ -1,17 +1,15 @@
 <?php  
-session_start();  
-if(!isset($_SESSION["user"]))
-{
- header("location:index.php");
-}
-ob_start();
+	session_start();  
+	if(!isset($_SESSION["user"])) {
+	header("location:index.php");
+	}
+	ob_start();
 ?> 
 
 <?php
-include('db.php');
-$rsql ="select id from room";
-$rre=mysqli_query($con,$rsql);
-
+	include('db.php');
+	$rsql ="SELECT id FROM `habitaciones`";
+	$rre=mysqli_query($con,$rsql);
 ?>
 							 
 <!DOCTYPE html>
@@ -19,7 +17,7 @@ $rre=mysqli_query($con,$rsql);
 <head>
       <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> HOTEL Amanecer</title>
+    <title>Hotel Viñas Queirolo</title>
 	<!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FontAwesome Styles-->
@@ -43,7 +41,6 @@ $rre=mysqli_query($con,$rsql);
             </div>
 
             <ul class="nav navbar-top-links navbar-right">
-			
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -54,36 +51,30 @@ $rre=mysqli_query($con,$rsql);
                         <li><a href="settings.php"><i class="fa fa-gear fa-fw"></i> Configuraciones</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Cerrar sesión
-</a>
+                        <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Cerrar sesión</a>
                         </li>
                     </ul>
-					
                     <!-- /.dropdown-user -->
                 </li>
                 <!-- /.dropdown -->
             </ul>
         </nav>
         <!--/. NAV TOP  -->
+
         <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
-
                     <li>
-                        <a  href="settings.php"><i class="fa fa-dashboard"></i>Estado de la habitación</a>
+                        <a href="settings.php"><i class="fa fa-dashboard"></i>Estado de la habitación</a>
                     </li>
 					<li>
-                        <a   href="room.php"><i class="fa fa-plus-circle"></i>Agregar habitación</a>
+                        <a href="room.php"><i class="fa fa-plus-circle"></i>Agregar habitación</a>
                     </li>
                     <li>
-                        <a  class="active-menu" href="roomdel.php"><i class="fa fa-pencil-square-o"></i> Eliminar habitación
-</a>
+                        <a class="active-menu" href="roomdel.php"><i class="fa fa-pencil-square-o"></i> Eliminar habitación</a>
                     </li>
-					
-
-                    
+				</ul> 
             </div>
-
         </nav>
         <!-- /. NAV SIDE  -->
        
@@ -91,12 +82,9 @@ $rre=mysqli_query($con,$rsql);
        
         <div id="page-wrapper" >
             <div id="page-inner">
-			 <div class="row">
+			 	<div class="row">
                     <div class="col-md-12">
-                        <h1 class="page-header">
-                          	ELIMINAR HABITACIÓN
- <small></small>
-                        </h1>
+                        <h1 class="page-header">ELIMINAR HABITACIÓN</h1>
                     </div>
                 </div> 
                  
@@ -106,159 +94,113 @@ $rre=mysqli_query($con,$rsql);
                 <div class="col-md-12 col-sm-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                       Eliminar habitación
-
-                        </div>
+                       		Eliminar habitación
+						</div>
                         <div class="panel-body">
 						<form name="form" method="post">
                             <div class="form-group">
-                                            <label>Seleccione la ID de la habitación
- *</label>
-                                            <select name="id"  class="form-control" required>
-												<option value selected ></option>
-												<?php
-												while($rrow=mysqli_fetch_array($rre))
-												{
-												$value = $rrow['id'];
-												 echo '<option value="'.$value.'">'.$value.'</option>';
-												
-												}
-												?>
-                                                
-                                            </select>
-                              </div>
+                                <label>Seleccione la ID de la habitación*</label>
+								<select name="id"  class="form-control" required>
+									<option value selected ></option>
+									<?php
+										while($rrow=mysqli_fetch_array($rre)) {
+										$value = $rrow['id'];
+											echo '<option value="'.$value.'">'.$value.'</option>';
+										}
+									?>
+								</select>
+                            </div>
 							  
-								
-							 <input type="submit" name="del" value="Delete Room" class="btn btn-primary"> 
-							</form>
+							<input type="submit" name="del" value="Borrar habitación" class="btn btn-primary"> 
+						</form>
 							<?php
 							 include('db.php');
 							 
-							 if(isset($_POST['del']))
-							 {
+							 if(isset($_POST['del'])) {
+								
 								$did = $_POST['id'];
-								
-								
-								$sql ="DELETE FROM `room` WHERE id = '$did'" ;
-								if(mysqli_query($con,$sql))
-								{
-								 echo '<script type="text/javascript">alert("Delete the Room") </script>' ;
-										
-										header("Location: roomdel.php");
+								$sql = "DELETE FROM `habitaciones` WHERE id = '$did'" ;
+
+								if(mysqli_query($con,$sql)) {
+								  	echo '<script type="text/javascript">alert("Habitacion Borrada") </script>' ;
 								}else {
-									echo '<script>alert("Sorry ! Check The System") </script>' ;
+									echo '<script>alert("Error. Verifique el sistema") </script>' ;
 								}
 							 }
 							
 							?>
                         </div>
-                        
                     </div>
                 </div>
                 
                   
-           <?php
-						include ('db.php');
-						$sql = "select * from room";
-						$re = mysqli_query($con,$sql)
+           		<?php
+					include ('db.php');
+					$sql = "SELECT * FROM `habitaciones`";
+					$re = mysqli_query($con, $sql);
 				?>
-                <div class="row">
+                
+				<div class="row">
 				
-				
-				<?php
-										while($row= mysqli_fetch_array($re))
-										{
-												$id = $row['type'];
-											if($id == "Superior Room") 
-											{
-												echo"<div class='col-md-3 col-sm-12 col-xs-12'>
-													<div class='panel panel-primary text-center no-boder bg-color-blue'>
-														<div class='panel-body'>
-															<i class='fa fa-users fa-5x'></i>
-															<h3>".$row['bedding']."</h3>
-														</div>
-														<div class='panel-footer back-footer-blue'>
-															".$row['type']."
+					<?php
+						while($row= mysqli_fetch_array($re)) {
+							
+							$id = $row['tipo_habitacion'];
+							if($id == "Habitacion Superior") {
+								$bg_color = "bg-color-blue";
+								$footer_color = "back-footer-blue";
+							}
+							else if($id == "Habitacion Suite") {
+								$bg_color = "bg-color-green";
+								$footer_color = "back-footer-green";
+							}
+							else if($id == "Habitacion Junior") {
+								$bg_color = "bg-color-brown";
+								$footer_color = "back-footer-brown";
+							}
+							else if($id == "Habitacion Individual") {
+								$bg_color = "bg-color-red";
+								$footer_color = "back-footer-red";
+							}
 
-														</div>
-													</div>
-												</div>";
-											}
-											else if ($id == "Suite Room")
-											{
-												echo"<div class='col-md-3 col-sm-12 col-xs-12'>
-													<div class='panel panel-primary text-center no-boder bg-color-green'>
-														<div class='panel-body'>
-															<i class='fa fa-users fa-5x'></i>
-															<h3>".$row['bedding']."</h3>
-														</div>
-														<div class='panel-footer back-footer-green'>
-															".$row['type']."
+							echo"<div class='col-md-3 col-sm-12 col-xs-12'>
+								<div class='panel panel-primary text-center no-boder $bg_color'>
+									<div class='panel-body'>
+										<i class='fa fa-users fa-5x'></i>
+										<h3>".$row['tipo_cama']."</h3>
+									</div>
+									<div class='panel-footer $footer_color'>
+										".$row['tipo_habitacion']."
 
-														</div>
-													</div>
-												</div>";
-											
-											}
-											else if($id =="Junior Room")
-											{
-												echo"<div class='col-md-3 col-sm-12 col-xs-12'>
-													<div class='panel panel-primary text-center no-boder bg-color-brown'>
-														<div class='panel-body'>
-															<i class='fa fa-users fa-5x'></i>
-															<h3>".$row['bedding']."</h3>
-														</div>
-														<div class='panel-footer back-footer-brown'>
-															".$row['type']."
+									</div>
+								</div>
+							</div>";
+						}
+					?>    
+                </div> <!-- /.row -->
 
-														</div>
-													</div>
-												</div>";
-											
-											}
-											else if($id =="Single Room")
-											{
-												echo"<div class='col-md-3 col-sm-12 col-xs-12'>
-													<div class='panel panel-primary text-center no-boder bg-color-red'>
-														<div class='panel-body'>
-															<i class='fa fa-users fa-5x'></i>
-															<h3>".$row['bedding']."</h3>
-														</div>
-														<div class='panel-footer back-footer-red'>
-															".$row['type']."
-
-														</div>
-													</div>
-												</div>";
-											
-											}
-										}
-									?>
+				<?php	
+					ob_end_flush();
+				?>
                     
-                </div>
-            <?php
-				
-			ob_end_flush();
-			?>
-                    
-            
-				
-					</div>
-			 <!-- /. PAGE INNER  -->
-            </div>
-         <!-- /. PAGE WRAPPER  -->
-        </div>
-     <!-- /. WRAPPER  -->
+			</div> <!-- /.row -->
+			 
+			</div> <!-- /. PAGE INNER  -->
+		</div> <!-- /. PAGE WRAPPER  -->
+	</div> <!-- /. WRAPPER  -->
+
     <!-- JS Scripts-->
+
     <!-- jQuery Js -->
     <script src="assets/js/jquery-1.10.2.js"></script>
-      <!-- Bootstrap Js -->
+      
+	<!-- Bootstrap Js -->
     <script src="assets/js/bootstrap.min.js"></script>
-    <!-- Metis Menu Js -->
-    <script src="assets/js/jquery.metisMenu.js"></script>
-      <!-- Custom Js -->
-    <script src="assets/js/custom-scripts.js"></script>
     
-   
+	<!-- Metis Menu Js -->
+    <script src="assets/js/jquery.metisMenu.js"></script>
+      
+	<!-- Custom Js -->
+    <script src="assets/js/custom-scripts.js"></script>
 </body>
 </html>

@@ -99,9 +99,9 @@ if(!isset($_SESSION["user"]))
                                 <select name="troom"  class="form-control" required>
                                     <option value selected ></option>
                                     <option value="Habitacion Superior">HABITACIÓN SUPERIOR</option>
-                                    <option value="Habitacion Suite">HABITACIÓN DE LUJO</option>
-                                    <option value="Habitacion Junior">CASA DE HUESPEDES</option>
-                                    <option value="Habitacion Single">HABITACIÓN INDIVIDUAL</option>
+                                    <option value="Habitacion Suite">HABITACIÓN SUITE</option>
+                                    <option value="Habitacion Junior">HABITACIÓN JUNIOR</option>
+                                    <option value="Habitacion Individual">HABITACIÓN INDIVIDUAL</option>
                                 </select>
                             </div>
 							  
@@ -120,8 +120,7 @@ if(!isset($_SESSION["user"]))
                             <input type="submit" name="add" value="Agregar Nueva" class="btn btn-primary"> 
 						</form>
 							<?php
-
-							 include('db.php');
+							    include('db.php');
                                 if(isset($_POST['add'])) {
                                     $room = $_POST['troom'];
                                     $bed = $_POST['bed'];
@@ -131,12 +130,12 @@ if(!isset($_SESSION["user"]))
                                     $rs = mysqli_query($con, $check);
                                     $data = mysqli_fetch_array($rs, MYSQLI_NUM);
 
-                                    if($data[0] > 1) {
+                                    if($data[0] >= 1) {
                                         echo "<script type='text/javascript'> alert('La habitación ya existe')</script>";  
                                     }
 
                                     else {
-                                        $sql ="INSERT INTO `habitaciones`( `tipo_habitacion`, `tipo_cama`,`estado_hab`) VALUES ('$room','$bed','$place')" ;
+                                        $sql ="INSERT INTO `habitaciones` (`tipo_habitacion`, `tipo_cama`, `estado_hab`) VALUES ('$room','$bed','$place')" ;
                                         if(mysqli_query($con,$sql)) {
                                             echo '<script>alert("¡ Habitación agregada !") </script>' ;
                                         } else {
@@ -161,7 +160,7 @@ if(!isset($_SESSION["user"]))
                             <!-- Advanced Tables -->
                             <div class="panel panel-default">
                                 <?php
-                                    $sql = "SELECT * FROM `habitaciones` limit 0,10";
+                                    $sql = "SELECT * FROM `habitaciones`";
                                     $re = mysqli_query($con,$sql)
                                 ?>
                                 <div class="panel-body">

@@ -10,7 +10,7 @@ if(!isset($_SESSION["user"]))
 <head>
       <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> HOTEL Amanecer</title>
+    <title>Hotel Viñas Queirolo</title>
 	<!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FontAwesome Styles-->
@@ -102,25 +102,29 @@ if(!isset($_SESSION["user"]))
                         switch ($tipo) {
                             case "Habitacion Superior":
                                 $color = "bg-color-blue";
+                                $footer_color = "back-footer-blue";
                                 break;
                             case "Habitacion Suite":
                                 $color = "bg-color-green";
+                                $footer_color = "back-footer-green";
                                 break;
                             case "Habitacion Junior":
                                 $color = "bg-color-brown";
+                                $footer_color = "back-footer-brown";
                                 break;
                             case "Habitacion Individual":
                                 $color = "bg-color-red";
+                                $footer_color = "back-footer-red";
                                 break;
                         }
 
                         echo"<div class='col-md-3 col-sm-12 col-xs-12'>
                                 <div class='panel panel-primary text-center no-boder $color '>
                                     <div class='panel-body'>
-                                        <i class='fa fa-bed fa-5x'></i>
+                                        <i class='fa fa-users fa-5x'></i>
                                         <h3>".$row['tipo_cama']."</h3>
                                     </div>
-                                    <div class='panel-footer back-footer-blue'>
+                                    <div class='panel-footer $footer_color'>
                                         ".$row['tipo_habitacion']."
 
                                     </div>

@@ -11,7 +11,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> HOTEL Amanecer</title>
+    <title>Hotel Viñas Queirolo</title>
 	
     <!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
@@ -107,12 +107,12 @@
                         //$connect = mysqli_connect("localhost", "root", "", "hotel_queirolo");
                         include('db.php');
                         
-                        $query = "SELECT * FROM pagos";
+                        $query = "SELECT P.*, R.fecha_entrada, R.fecha_salida FROM `pagos` P INNER JOIN `reservas` R ON P.id_reserva = R.id";
                         $result = mysqli_query($con, $query);
                         $chart_data = '';
                         $tot = 0;
                         while($row = mysqli_fetch_array($result)) {
-                            $chart_data .= "{ date:'".$row["cout"]."', profit:".$row["fintot"] *10/100 ."}, ";
+                            $chart_data .= "{ date:'".$row["fecha_salida"]."', profit:".$row["fintot"] *10/100 ."}, ";
                             $tot = $tot + $row["fintot"] *10/100;
                         }
                         $chart_data = substr($chart_data, 0, -2);
@@ -145,7 +145,7 @@
                                             
                                         <?php
                                             
-                                            $sql="select * from payment";
+                                            $sql="SELECT C.trato, C.nombres, C.apellidos, R.fecha_entrada, R.fecha_salida, P.* FROM `pagos` P INNER JOIN `reservas` R ON P.id_reserva = R.id INNER JOIN `clientes` C ON R.id_cliente = C.id;";
                                             $re = mysqli_query($con,$sql);
                                             while($row = mysqli_fetch_array($re)) {
                                             
@@ -153,32 +153,23 @@
                                                 
                                                 if($id % 2 ==1 ) {
                                                     echo
-                                                    "<tr class='gradeC'>
-                                                        <td>".$row['id']." </td>
-                                                        <td>".$row['title']." ".$row['fname']." ".$row['lname']."</td>
-                                                        <td>".$row['cin']."</td>
-                                                        <td>".$row['cout']."</td>
-                                                        <td>$".$row['ttot']."</td>
-                                                        <td>$".$row['mepr']."</td>
-                                                        <td>$".$row['btot']."</td>
-                                                        <td>$".$row['fintot']."</td>
-                                                        <td>$".$row['fintot']*10/100 ."</td>
-                                                    </tr>";
-                                                }
-                                                else{
+                                                    "<tr class='gradeC'>";
+                                                } else {
                                                     echo
-                                                    "<tr class='gradeU'>
-                                                        <td>".$row['id']." </td>
-                                                        <td>".$row['title']." ".$row['fname']." ".$row['lname']."</td>
-                                                        <td>".$row['cin']."</td>
-                                                        <td>".$row['cout']."</td>
-                                                        <td>$".$row['ttot']."</td>
-                                                        <td>$".$row['mepr']."</td>
-                                                        <td>$".$row['btot']."</td>
-                                                        <td>$".$row['fintot']."</td>
-                                                        <td>$".$row['fintot']*10/100 ."</td>
-                                                        </tr>";
+                                                    "<tr class='gradeU'>";
                                                 }
+
+                                                echo
+                                                    "<td>".$row['id']." </td>
+                                                    <td>".$row['trato']." ".$row['nombres']." ".$row['apellidos']."</td>
+                                                    <td>".$row['fecha_entrada']."</td>
+                                                    <td>".$row['fecha_salida']."</td>
+                                                    <td>$".$row['ttot']."</td>
+                                                    <td>$".$row['mepr']."</td>
+                                                    <td>$".$row['btot']."</td>
+                                                    <td>$".$row['fintot']."</td>
+                                                    <td>$".$row['fintot']*10/100 ."</td>
+                                                </tr>";
                                             }
                                         ?>
                                             

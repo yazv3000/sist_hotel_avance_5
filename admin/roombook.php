@@ -65,7 +65,7 @@
         <nav class="navbar navbar-default top-navbar" role="navigation">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-                    <span class="sr-only">Navegación de palanca</span>
+                    <span class="sr-only"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -212,14 +212,14 @@
 							<div class="panel-footer">
 								<form method="post">
 									<div class="form-group">
-										<label>Seleccione la Conformación</label>
+										<label>Seleccione el nivel de estado</label>
 										<select name="conf"class="form-control">
 											<option value selected>	</option>
-											<option value="Conform">Conform</option>
+											<option value="Confirmar">Confirmar Reserva</option>
 										</select>
 									</div>
 									
-									<input type="submit" name="co" value="Conform" class="btn btn-success">
+									<input type="submit" name="co" value="Confirmar" class="btn btn-success">
 								</form>
 							</div>
 						</div>

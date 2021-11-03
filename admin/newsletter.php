@@ -5,19 +5,18 @@ $eid = $_GET['eid'];
 $approval ="Permitido";
 $napproval="Sin permitir";
 
-$view="select * from contact where id = '$eid' ";
+$view="SELECT * from `contacto` where `id` = '$eid' ";
 $re = mysqli_query($con,$view);
-while ($row=mysqli_fetch_array($re))
-{
+
+while ($row=mysqli_fetch_array($re)){
 	$id =$row['approval'];
 }
 
-if($id=="Sin permitir")
-{
+if($id=="Sin permitir"){
 	$sql ="UPDATE `contacto` SET `approval`= '$approval' WHERE id = '$eid' ";
 	if(mysqli_query($con,$sql))
 	{
-		echo '<script>alert("New Room Added") </script>' ;
+		echo '<script>alert("Nueva habitacion agregada") </script>' ;
 		header("Location: messages.php");
 	}
 }

@@ -1806,6 +1806,11 @@
 .fa-bed:before {
   content: "\f236";
 }
+
+.fa-bedx:before {
+  content: "\f237";
+}
+
 .fa-viacoin:before {
   content: "\f237";
 }

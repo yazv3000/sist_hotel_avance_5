@@ -153,7 +153,7 @@ CREATE TABLE `reservas` (
   `id` int(10) UNSIGNED NOT NULL,
   `id_cliente` int(10) UNSIGNED NOT NULL,
   `nro_habitacion` int(10) UNSIGNED NOT NULL,
-  `comidas` varchar(15) DEFAULT NULL,
+  `comidas` varchar(30) DEFAULT NULL,
   `fecha_entrada` date DEFAULT NULL,
   `fecha_salida` date DEFAULT NULL,
   `estado` varchar(15) DEFAULT NULL,

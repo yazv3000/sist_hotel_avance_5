@@ -169,11 +169,16 @@ tr:hover .cut { opacity: 1; }
 		
 		
 		
-		$sql ="select * from pagos where id = '$pid' ";
+		$sql ="SELECT C.trato, C.nombres, C.apellidos, R.nro_habitacion, H.tipo_habitacion, H.tipo_cama, R.fecha_entrada, R.fecha_salida, R.comidas, R.cant_dias, P.*
+		FROM `pagos` P INNER JOIN `reservas` R ON P.id_reserva = R.id INNER JOIN `clientes` C ON R.id_cliente = C.id INNER JOIN `habitaciones` H ON H.id = R.nro_habitacion
+		WHERE P.id = '$pid'";
+
 		$re = mysqli_query($con,$sql);
+
 		while($row=mysqli_fetch_array($re))
 		{
 			$id = $row['id'];
+			$id_reserva = $row['id_reserva'];
 			$title = $row['trato'];
 			$fname = $row['nombres'];
 			$lname = $row['apellidos'];
@@ -187,10 +192,12 @@ tr:hover .cut { opacity: 1; }
 			$mepr = $row['mepr'];
 			$btot = $row['btot'];
 			$fintot = $row['fintot'];
-			$days = $row['noofdays'];
+			$days = $row['cant_dias'];
 		}
 		
 		$type_of_room = 0;   
+		$type_of_bed = 0;
+		$type_of_meal = 0;
 
 		if($troom=="Habitacion Superior") {
 			$type_of_room = 320;		
@@ -240,16 +247,16 @@ tr:hover .cut { opacity: 1; }
 	
 	?>
 		<header>
-			<h1>Invoice</h1>
+			<h1>Factura</h1>
 			<address >
-				<p>HOTEL AMANECER,</p>
-				<p>Nueva carretera de Kalmunai,<br>Batusai,<br>Sri Lanka.</p>
-				<p>(+94) 65 222 44 55</p>
+				<p>HOTEL VIÑAS QUEIROLO,</p>
+				<p>Los Molinos,<br>Ica, Perú</p>
+				<p>(+511) 965397086</p>
 			</address>
 			<span><img alt="" src="assets/img/sun.png"></span>
 		</header>
 		<article>
-			<h1>	Recipiente</h1>
+			<h1></h1>
 			<address >
 				<p><?php echo $title.$fname." ".$lname ?> <br></p>
 			</address>
@@ -268,7 +275,7 @@ tr:hover .cut { opacity: 1; }
 				<thead>
 					<tr>
 						<th><span >Item</span></th>
-						<th><span >No de dias</span></th>
+						<th><span >Nº de dias</span></th>
 						<th><span >Tarifa</span></th>
 						<th><span >Cantidad</span></th>
 						<th><span >Precio</span></th>
@@ -314,21 +321,15 @@ tr:hover .cut { opacity: 1; }
 				</tr>
 			</table>
 		</article>
-		<aside>
-			<h1><span >Contáctenos</span></h1>
-			<div >
-				<p align="center">Email :- tusolutionweb@sgmail.com || Web :- http://tusolutionweb.blogspot.pe/ || Phone :- +94 65 222 44 55 </p>
-			</div>
-		</aside>
 	</body>
 </html>
 <?php
-$free="Free";
+$free="Disponible";
 $nul = null;
-$rpsql = "UPDATE `room` SET `place`='$free',`cusid`='$nul' where `cusid`='$id'";
+$rpsql = "UPDATE `habitaciones` SET `estado_hab`='$free' where `id`='$nroom'";
 if(mysqli_query($con,$rpsql))
 {
-	$delsql= "DELETE FROM `roombook` WHERE id='$id' ";
+	$delsql= "DELETE FROM `reservas` WHERE id='$id_reserva' ";
 	
 	if(mysqli_query($con,$delsql))
 	{
