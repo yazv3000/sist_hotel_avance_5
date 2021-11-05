@@ -11,7 +11,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+       
     <title>Hotel Viñas Queirolo</title>
+
+    <link rel="shortcut icon" type="image/png" href="../images/flaticon.png">
 	
     <!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
@@ -112,8 +115,8 @@
                         $chart_data = '';
                         $tot = 0;
                         while($row = mysqli_fetch_array($result)) {
-                            $chart_data .= "{ date:'".$row["fecha_salida"]."', profit:".$row["fintot"] *10/100 ."}, ";
-                            $tot = $tot + $row["fintot"] *10/100;
+                            $chart_data .= "{ date:'".$row["fecha_salida"]."', profit:".$row["total"] *10/100 ."}, ";
+                            $tot = $tot + $row["total"] *10/100;
                         }
                         $chart_data = substr($chart_data, 0, -2);
                     ?>
@@ -164,11 +167,11 @@
                                                     <td>".$row['trato']." ".$row['nombres']." ".$row['apellidos']."</td>
                                                     <td>".$row['fecha_entrada']."</td>
                                                     <td>".$row['fecha_salida']."</td>
-                                                    <td>$".$row['ttot']."</td>
-                                                    <td>$".$row['mepr']."</td>
+                                                    <td>$".$row['htot']."</td>
+                                                    <td>$".$row['ctot']."</td>
                                                     <td>$".$row['btot']."</td>
-                                                    <td>$".$row['fintot']."</td>
-                                                    <td>$".$row['fintot']*10/100 ."</td>
+                                                    <td>$".$row['total']."</td>
+                                                    <td>$".$row['total']*10/100 ."</td>
                                                 </tr>";
                                             }
                                         ?>

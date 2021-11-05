@@ -9,11 +9,11 @@ $view="SELECT * from `contacto` where `id` = '$eid' ";
 $re = mysqli_query($con,$view);
 
 while ($row=mysqli_fetch_array($re)){
-	$id =$row['approval'];
+	$id =$row['aprobado'];
 }
 
 if($id=="Sin permitir"){
-	$sql ="UPDATE `contacto` SET `approval`= '$approval' WHERE id = '$eid' ";
+	$sql ="UPDATE `contacto` SET `aprobado`= '$approval' WHERE id = '$eid' ";
 	if(mysqli_query($con,$sql))
 	{
 		echo '<script>alert("Nueva habitacion agregada") </script>' ;
@@ -21,10 +21,10 @@ if($id=="Sin permitir"){
 	}
 }
 else {
-$sql ="UPDATE `contacto` SET `approval`= '$napproval' WHERE id = '$eid' ";
+$sql ="UPDATE `contacto` SET `aprobado`= '$napproval' WHERE id = '$eid' ";
 
 	if(mysqli_query($con,$sql)){
-		echo '<script>alert("New Room Added") </script>' ;
+		echo '<script>alert("Esta persona ahora está suscrita para recibir boletines informativos") </script>' ;
 		header("Location: messages.php");
 	}
 }

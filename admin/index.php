@@ -13,7 +13,9 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Administrativo Hotel Villas Queirolo</title>
+  <title>Hotel Villas Queirolo</title>
+  
+  <link rel="shortcut icon" type="image/png" href="../images/flaticon.png">
   
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -48,7 +50,7 @@
 
     </div>
 
-    <br>
+    <br><br>
     <div class="bottom">  <h3><a href="../index.php">HOTEL VIÑAS QUEIROLO</a></h3></div>
   
   
@@ -65,9 +67,9 @@
       $myusername = mysqli_real_escape_string($con,$_POST['user']);
       $mypassword = mysqli_real_escape_string($con,$_POST['pass']); 
       
-      $sql = "SELECT id FROM login WHERE usuario = '$myusername' and contra = '$mypassword'";
+      $sql = "SELECT `id`  FROM `login` WHERE usuario = '$myusername' and contra = '$mypassword'";
       $result = mysqli_query($con,$sql);
-      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+      $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
       $active = $row['active'];
       
       $count = mysqli_num_rows($result);

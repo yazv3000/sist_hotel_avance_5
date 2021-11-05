@@ -8,9 +8,13 @@ if(!isset($_SESSION["user"]))
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-      <meta charset="utf-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Hotel Viñas Queirolo</title>
+
+    <link rel="shortcut icon" type="image/png" href="../images/flaticon.png">
+
 	<!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FontAwesome Styles-->
@@ -98,6 +102,8 @@ if(!isset($_SESSION["user"]))
                     while($row= mysqli_fetch_array($re)){
                         
                         $tipo = $row['tipo_habitacion'];
+                        $disponibile = $row['estado_hab'];
+                        $bedding = $row['tipo_cama'];
 
                         switch ($tipo) {
                             case "Habitacion Superior":
@@ -112,17 +118,23 @@ if(!isset($_SESSION["user"]))
                                 $color = "bg-color-brown";
                                 $footer_color = "back-footer-brown";
                                 break;
-                            case "Habitacion Individual":
+                            case "Habitacion Junior Suite":
                                 $color = "bg-color-red";
                                 $footer_color = "back-footer-red";
                                 break;
                         }
 
+                        if($disponibile == "Disponible"){
+                            $icono = "fa-square-o";
+                        }else{
+                            $icono = "fa-square";
+                        }
+
                         echo"<div class='col-md-3 col-sm-12 col-xs-12'>
                                 <div class='panel panel-primary text-center no-boder $color '>
                                     <div class='panel-body'>
-                                        <i class='fa fa-users fa-5x'></i>
-                                        <h3>".$row['tipo_cama']."</h3>
+                                        <i class='fa $icono fa-5x ' aria-hidden='true'></i>
+                                        <h3> [".$row['id']."] - ".$row['tipo_cama']."</h3>
                                     </div>
                                     <div class='panel-footer $footer_color'>
                                         ".$row['tipo_habitacion']."

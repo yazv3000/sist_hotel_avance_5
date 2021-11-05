@@ -9,7 +9,9 @@ include('db.php');	 // Conexión a la base de datos
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Resort Inn Responsive , Smartphone Compatible web template , Samsung, LG, Sony Ericsson, Motorola web design" />
+
+<meta name="description" content="Avance 5 - Taller de Programación Web: Sistema control de Reservas - Hotel">
+<meta name="author" content="Y. Zapata Vargas">
 
 <link rel="shortcut icon" type="image/png" href="images/flaticon.png">
 
@@ -171,11 +173,11 @@ include('db.php');	 // Conexión a la base de datos
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					
-					<h4>SOL<span>SUBIR</span></h4>
+					<h4>HOTEL VIÑAS <span> QUEIROLO</span></h4>
 					
 					<img src="images/1.jpg" alt=" " class="img-responsive">
 					<h5>Sabemos lo que amas</h5>
-					<p>Ofrecer a los huéspedes vistas únicas y encantadoras desde sus habitaciones con sus comodidades excepcionales, hace que Star Hotel sea uno de los mejores en su tipo. Pruebe nuestro menú de comida, servicios increíbles y un personal amable mientras esté aquí..</p>
+					<p>Vive unos días rodeados de viñedos, en contacto con la naturaleza, aprende y disfruta de vinos y piscos, todo esto es parte de la experiencia Queirolo.</p>
 				</div>
 			</div>
 		</div>
@@ -462,7 +464,7 @@ include('db.php');	 // Conexión a la base de datos
 					<div class="price-block agile">
 						<div class="price-gd-top ">
 							<img src="images/r4.jpg" alt=" " class="img-responsive" />
-							<h4>Hab. Individual</h4>
+							<h4>Hab. Junior Suite</h4>
 						</div>
 						<div class="price-gd-bottom">
 							<div class="price-list">
@@ -617,7 +619,7 @@ include('db.php');	 // Conexión a la base de datos
 							$phone = $_POST['phone'];
 							$email = $_POST['email'];
 							$approval = "Sin permitir";
-							$sql = "INSERT INTO `contacto`(`nombre_completo`, `nro_telefono`, `email`,`fecha_contacto`,`approval`) 
+							$sql = "INSERT INTO `contacto`(`nombre_completo`, `nro_telefono`, `email`,`fecha_contacto`,`aprobado`) 
 									VALUES 					('$name',			'$phone',	'$email',		now(),	 '$approval')" ;
 							
 							if(mysqli_query($con,$sql))

@@ -7,7 +7,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
     <title>Hotel Viñas Queirolo</title>
+
+    <link rel="shortcut icon" type="image/png" href="../images/flaticon.png">
+    
 	<!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FontAwesome Styles-->
@@ -123,7 +127,7 @@
                                         <option value="Habitacion Superior">HABITACIÓN SUPERIOR</option>
                                         <option value="Habitacion Suite">HABITACIÓN SUITE</option>
                                         <option value="Habitacion Junior">HABITACIÓN JUNIOR</option>
-                                        <option value="Habitacion Individual">HABITACIÓN INDIVIDUAL</option>
+                                        <option value="Habitacion Junior Suite">HABITACIÓN JUNIOR SUITE</option>
                                     </select>
                                 </div>
                                 
@@ -134,7 +138,7 @@
                                         <option value="Simple">Simple</option>
                                         <option value="Doble">Doble</option>
                                         <option value="Triple">Triple</option>
-                                        <option value="Cuadruple">Cuádrupe</option>
+                                        <option value="Cuadruple">Cuádruple</option>
                                         <option value="Ninguna">Ninguna</option>
                                     </select>
                                 </div>
@@ -144,7 +148,12 @@
                                     <select name="nroom" class="form-control" required>
                                         <option value selected ></option>
                                         <?php
-                                            for($nro = 1; $nro <=7; $nro++){
+                                            $con = mysqli_connect("localhost","root","","hotel_queirolo");
+                                            $sql = "SELECT COUNT(`id`) FROM `habitaciones`";
+                                            $rs = mysqli_query($con, $sql);
+                                            $data = mysqli_fetch_array($rs, MYSQLI_NUM);
+
+                                            for($nro = 1; $nro <=$data[0]; $nro++){
                                                 echo '<option value="'.$nro.'">'.$nro.'</option>'; // bucle para agregar los número de habitación
                                             }
                                         ?>
@@ -181,7 +190,7 @@
                             <p>Escriba debajo de este código
                                 <?php 
                                     $Random_code = rand(); 
-                                    echo$Random_code; 
+                                    echo $Random_code; 
                                 ?>
                             </p>
                             <br />

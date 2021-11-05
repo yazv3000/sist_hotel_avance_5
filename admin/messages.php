@@ -12,6 +12,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hotel Viñas Queirolo</title>
 	
+    <link rel="shortcut icon" type="image/png" href="../images/flaticon.png">
+
     <!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FontAwesome Styles-->
@@ -109,7 +111,7 @@
                             
                             <?php
                                 while( $rows = mysqli_fetch_array($rew) ){
-                                    $app=$rows['approval'];
+                                    $app=$rows['aprobado'];
                                     if($app=="Permitido") {  
                                     }
                                 }
@@ -170,7 +172,7 @@
                                     $log ="INSERT INTO `noticias`(`titulo`, `asunto`, `contenido`) VALUES ('$_POST[title]','$_POST[subject]','$_POST[news]')";
                                     
                                     if(mysqli_query($con,$log)){
-                                        echo '<script>alert("New Room Added") </script>' ;		
+                                        echo '<script>alert("Boletín guardado") </script>' ;		
                                     }	
                                 }
                             ?>
@@ -200,7 +202,7 @@
                                                 <th>Fecha</th>
                                                 <th>Estado</th>
                                                 <th>Aprobación</th>
-                                                <th>retirar</th>
+                                                <th>Retirar</th>
                                             </tr>
                                         </thead>
 
@@ -212,29 +214,19 @@
                                                 $id = $row['id'];
                                                 
                                                 if( $id % 2 ==1 ) {
-                                                    echo
-                                                    "<tr class='gradeC'>
-                                                        <td>".$row['fullname']."</td>
-                                                        <td>".$row['phoneno']."</td>
-                                                        <td>".$row['email']."</td>
-                                                        <td>".$row['cdate']."</td>
-                                                        <td>".$row['approval']."</td>
-                                                        <td><a href=newsletter.php?eid=".$id ." <button class='btn btn-primary'> <i class='fa fa-edit' ></i> Permission</button></td>
-                                                        <td><a href=newsletterdel.php?eid=".$id ." <button class='btn btn-danger'> <i class='fa fa-edit' ></i> Delete</button></td>
-                                                    </tr>";
+                                                    echo  "<tr class='gradeC'>";
                                                 }
                                                 else {
-                                                    echo"
-                                                    <tr class='gradeU'>
-                                                        <td>".$row['fullname']."</td>
-                                                        <td>".$row['phoneno']."</td>
+                                                    echo "<tr class='gradeU'>";
+                                                }
+                                                echo   "<td>".$row['nombre_completo']."</td>
+                                                        <td>".$row['nro_telefono']."</td>
                                                         <td>".$row['email']."</td>
-                                                        <td>".$row['cdate']."</td>
-                                                        <td>".$row['approval']."</td>
+                                                        <td>".$row['fecha_contacto']."</td>
+                                                        <td>".$row['aprobado']."</td>
                                                         <td><a href=newsletter.php?eid=".$id." <button class='btn btn-primary'> <i class='fa fa-edit' ></i> Permission</button></td>
                                                         <td><a href=newsletterdel.php?eid=".$id ." <button class='btn btn-danger'> <i class='fa fa-edit' ></i> Delete </button></td>		
                                                     </tr>";
-                                                }
                                             }
                                         ?>   
                                         </tbody>

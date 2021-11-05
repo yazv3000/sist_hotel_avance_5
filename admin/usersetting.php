@@ -10,9 +10,13 @@ ob_start();
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-      <meta charset="utf-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> HOTEL Amenecer</title>
+    
+    <title>Hotel Viñas Queirolo</title>
+
+    <link rel="shortcut icon" type="image/png" href="../images/flaticon.png">
+
 	<!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FontAwesome Styles-->
@@ -232,7 +236,7 @@ ob_start();
             <?php 
                 if(isset($_POST['up'])) {
                     $usuario = $_POST['usuario'];
-                    $passwr = $_POST['contra'];
+                    $passwr = $_POST['pasd'];
                     
                     $upsql = "UPDATE `login` SET `usuario`='$usuario',`contra`='$passwr' WHERE id = '$id'";
                     if(mysqli_query($con,$upsql)) {

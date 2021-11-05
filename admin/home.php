@@ -10,7 +10,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Administrator</title>
+    
+    <title>Hotel Viñas Queirolo</title>
+
+    <link rel="shortcut icon" type="image/png" href="../images/flaticon.png">
     <!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FontAwesome Styles-->

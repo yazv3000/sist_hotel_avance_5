@@ -7,8 +7,6 @@
 	{
 	echo '<script>alert("Sorry ! Wrong Entry") </script>' ;
 			header("Location: messages.php");
-
-
 	}
 
 	else{
@@ -22,5 +20,4 @@
 
 
 	}
-	
 ?>

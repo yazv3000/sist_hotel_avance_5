@@ -15,8 +15,8 @@
 		$curdate=date("Y/m/d");
 
 		include ('db.php');
-		$id = $_GET['rid'];
-		$sql = "SELECT R.*, C.*, H.* FROM `reservas` R INNER JOIN `clientes` C ON R.id_cliente = C.id INNER JOIN `habitaciones` H on R.nro_habitacion = H.id where R.id = '$id'";
+		$id_reserva = $_GET['rid'];
+		$sql = "SELECT R.*, C.*, H.* FROM `reservas` R INNER JOIN `clientes` C ON R.id_cliente = C.id INNER JOIN `habitaciones` H on R.nro_habitacion = H.id where R.id = '$id_reserva'";
 		$re = mysqli_query($con,$sql);
 
 		while($row=mysqli_fetch_array($re)){
@@ -47,7 +47,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Administrador	</title>
+
+    <title>Hotel Viñas Queirolo</title>
+
+    <link rel="shortcut icon" type="image/png" href="../images/flaticon.png">
+	
     <!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FontAwesome Styles-->
@@ -142,67 +146,67 @@
 										</tr>
 										
 										<tr>
-											<th>nombre</th>
-											<th><?php echo $title.$fname.$lname; ?> </th>
+											<th>Cliente:</th>
+											<th><?php echo $title." ".$fname." ".$lname; ?> </th>
 										</tr>
 										
 										<tr>
-											<th>Email</th>
+											<th>Email:</th>
 											<th><?php echo $email; ?> </th>										
 										</tr>
 
 										<tr>
-											<th>Nacionalidad </th>
+											<th>Nacionalidad:</th>
 											<th><?php echo $nat; ?></th>										
 										</tr>
 
 										<tr>
-											<th>Pais </th>
+											<th>País:</th>
 											<th><?php echo $country;  ?></th>										
 										</tr>
 
 										<tr>
-											<th> No Telefono</th>
+											<th>Nº Teléfono:</th>
 											<th><?php echo $Phone; ?></th>										
 										</tr>
 
 										<tr>
-											<th>Tipo de la habitación</th>
+											<th>Tipo de la habitación:</th>
 											<th><?php echo $troom; ?></th>										
 										</tr>
 
 										<tr>
-											<th>No 	De la habitación </th>
+											<th>Nº de habitación:</th>
 											<th><?php echo $nroom; ?></th>	
 										</tr>
 
 										<tr>
-											<th>Régimen de comidas </th>
-											<th><?php echo $meal; ?></th>	
-										</tr>
-
-										<tr>
-											<th>Lecho </th>
+											<th>Tipo de cama:</th>
 											<th><?php echo $bed; ?></th>	
 										</tr>
 
 										<tr>
-											<th>Fecha de entrada</th>
+											<th>Régimen de comidas:</th>
+											<th><?php echo $meal; ?></th>	
+										</tr>
+
+										<tr>
+											<th>Fecha de entrada:</th>
 											<th><?php echo $cin; ?></th>
 										</tr>
 
 										<tr>
-											<th>Fecha de salida</th>
+											<th>Fecha de salida:</th>
 											<th><?php echo $cout; ?></th>
 										</tr>
 
 										<tr>
-											<th>No de dias</th>
+											<th>Nº de días:</th>
 											<th><?php echo $days; ?></th>	
 										</tr>
 
 										<tr>
-											<th>Nivel de estado</th>
+											<th>Nivel de estado:</th>
 											<th><?php echo $sta; ?></th>
 										</tr>
 									</table>
@@ -215,7 +219,7 @@
 										<label>Seleccione el nivel de estado</label>
 										<select name="conf"class="form-control">
 											<option value selected>	</option>
-											<option value="Confirmar">Confirmar Reserva</option>
+											<option value="Confirmado">Confirmar Reserva</option>
 										</select>
 									</div>
 									
@@ -247,7 +251,7 @@
 								$gh = $gh + 1;
 							}
 
-							if($s=="Habitacion Individual"){
+							if($s=="Habitacion Junior Suite"){
 								$sr = $sr + 1;
 							}
 
@@ -278,7 +282,7 @@
 								$cgh = $cgh + 1;
 							}
 
-							if($cs=="Habitacion Individual" ){
+							if($cs=="Habitacion Junior Suite" ){
 								$csr = $csr + 1;
 							}
 
@@ -297,7 +301,7 @@
 							
 								<table width="200px">
 									<tr>
-										<td><b>Habitación superior</b></td>
+										<td><b>Habitación Superior</b></td>
 										<td><button type="button" class="btn btn-primary btn-circle">
 										<?php  
 											$f1 =$sc - $csc;
@@ -325,7 +329,7 @@
 										?> </button></td> 
 									</tr>
 									<tr>
-										<td><b>Habitación Individual</b></td>
+										<td><b>Habitación Junior Suite</b></td>
 										<td><button type="button" class="btn btn-primary btn-circle">
 										<?php
 											$f3 =$sr - $csr;
@@ -402,88 +406,92 @@
 <?php
 	if(isset($_POST['co'])) {	
 		$st = $_POST['conf'];
-		
-		if($st=="Conform") {
-			$urb = "UPDATE `roombook` SET `stat`='$st' WHERE id = '$id'";
-				
+
+		if($st=="Confirmado") {
+			$urb = "UPDATE `reservas` SET `estado`='$st' WHERE id = '$id_reserva'";
+
 			if($f1=="NO" ){
-				echo "<script type='text/javascript'> alert('Sorry! Not Available Superior Room ')</script>";
+				echo "<script type='text/javascript'> alert('Sorry! Not Available Habitacion Superior')</script>";
 			}
 			else if($f2 =="NO"){
-				echo "<script type='text/javascript'> alert('Sorry! Not Available Junior Room')</script>";
+				echo "<script type='text/javascript'> alert('Sorry! Not Available Habitacion Junior')</script>";
 			}
 			else if ($f3 == "NO"){
-				echo "<script type='text/javascript'> alert('Sorry! Not Available Single Room')</script>";
+				echo "<script type='text/javascript'> alert('Sorry! Not Available Habitacion Junior Suite')</script>";
 			}
 			else if($f4=="NO") {
-				echo "<script type='text/javascript'> alert('Sorry! Not Available Suite Room')</script>";
+				echo "<script type='text/javascript'> alert('Sorry! Not Available Habitacion Suite')</script>";
 			}
 			else if( mysqli_query($con,$urb)) {	
 				//echo "<script type='text/javascript'> alert('Junior Room booking is conform')</script>";
 				//echo "<script type='text/javascript'> window.location='home.php'</script>";
 				$type_of_room = 0;       
 				
-				if($troom=="Superior Room") {
+				if($troom=="Habitacion Superior") {
 					$type_of_room = 320;
 				}
-				else if($troom=="Suite Room") {
+				else if($troom=="Habitacion Suite") {
 					$type_of_room = 220;
 				}
-				else if($troom=="Junior Room") {
+				else if($troom=="Habitacion Junior") {
 					$type_of_room = 180;
 				}
-				else if($troom=="Single Room") {
+				else if($troom=="Habitacion Junior Suite") {
 					$type_of_room = 150;
 				}
 				
-				if($bed=="Single") {
+				if($bed=="Simple") {
 					$type_of_bed = $type_of_room * 1/100;
 				}
-				else if($bed=="Double") {
+				else if($bed=="Doble") {
 					$type_of_bed = $type_of_room * 2/100;
 				}
 				else if($bed=="Triple") {
 					$type_of_bed = $type_of_room * 3/100;
 				}
-				else if($bed=="Quad") {
+				else if($bed=="Cuadruple") {
 					$type_of_bed = $type_of_room * 4/100;
 				}
-				else if($bed=="None") {
+				else if($bed=="Ninguna") {
 					$type_of_bed = $type_of_room * 0/100;
 				}
 				
-				if($meal=="Room only") {
-					$type_of_meal=$type_of_bed * 0;
+				if($meal=="Solo habitacion") {
+					$type_of_meal= $type_of_bed * 0;
 				}
-				else if($meal=="Breakfast") {
-					$type_of_meal=$type_of_bed * 2;
+				else if($meal=="Desayuno") {
+					$type_of_meal= $type_of_bed * 2;
 				}
-				else if($meal=="Half Board") {
-					$type_of_meal=$type_of_bed * 3;
+				else if($meal=="Media pension") {
+					$type_of_meal= $type_of_bed * 3;
 				}
-				else if($meal=="Full Board") {
-					$type_of_meal=$type_of_bed * 4;
+				else if($meal=="Pension completa") {
+					$type_of_meal= $type_of_bed * 4;
 				}
 				
-				$ttot = $type_of_room * $days * $nroom;
-				$mepr = $type_of_meal * $days;
+				$htot = $type_of_room * $days;
+				$ctot = $type_of_meal * $days;
 				$btot = $type_of_bed *$days;
 				
-				$fintot = $ttot + $mepr + $btot ;
+				$total = $htot + $ctot + $btot ;
 					
 				//echo "<script type='text/javascript'> alert('$count_date')</script>";
-				$psql = "INSERT INTO `pagos`(`id`, `title`, `fname`, `lname`, `troom`, `tbed`, `nroom`, `cin`, `cout`, `ttot`,`meal`, `mepr`, `btot`,`fintot`,`noofdays`) VALUES ('$id','$title','$fname','$lname','$troom','$bed','$nroom','$cin','$cout','$ttot','$meal','$mepr','$btot','$fintot','$days')";
-				
-				if(mysqli_query($con,$psql)) {
-					$notfree="NotFree";
-					$rpsql = "UPDATE `room` SET `place`='$notfree',`cusid`='$id' where bedding ='$bed' and type='$troom' ";
+				$psql = "INSERT INTO `pagos`(`id_reserva`, `htot`, `ctot`, `btot`,`total`) VALUES ('$id_reserva','$htot','$ctot','$btot','$total')";
+
+				if(mysqli_query($con, $psql)) {
+					$notfree="No disponible";
+					$rpsql = "UPDATE `habitaciones` SET `estado_hab`='$notfree' WHERE `id` = $nroom";
 					
-					if(mysqli_query($con,$rpsql)) {
-						echo "<script type='text/javascript'> alert('Booking Conform')</script>";
+					if(mysqli_query($con, $rpsql)) {
+						echo "<script type='text/javascript'> alert('Reserva confirmada')</script>";
 						echo "<script type='text/javascript'> window.location='roombook.php'</script>";
 					}
+				}else{
+					echo "woogogo";
 				}
 			}
+
+			echo "sdretre";
 		}	
 	}				
 ?>

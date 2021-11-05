@@ -8,9 +8,13 @@ if(!isset($_SESSION["user"]))
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-      <meta charset="utf-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> Hotel Viñas Queirolo</title>
+        
+    <title>Hotel Viñas Queirolo</title>
+
+    <link rel="shortcut icon" type="image/png" href="../images/flaticon.png">
+    
 	<!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FontAwesome Styles-->
@@ -101,7 +105,7 @@ if(!isset($_SESSION["user"]))
                                     <option value="Habitacion Superior">HABITACIÓN SUPERIOR</option>
                                     <option value="Habitacion Suite">HABITACIÓN SUITE</option>
                                     <option value="Habitacion Junior">HABITACIÓN JUNIOR</option>
-                                    <option value="Habitacion Individual">HABITACIÓN INDIVIDUAL</option>
+                                    <option value="Habitacion Junior Suite">HABITACIÓN JUNIOR SUITE</option>
                                 </select>
                             </div>
 							  
@@ -126,21 +130,12 @@ if(!isset($_SESSION["user"]))
                                     $bed = $_POST['bed'];
                                     $place = 'Disponible';
                                     
-                                    $check="SELECT COUNT(`id`) FROM `habitaciones` WHERE `tipo_habitacion` = '$room' AND `tipo_cama` = '$bed'";
-                                    $rs = mysqli_query($con, $check);
-                                    $data = mysqli_fetch_array($rs, MYSQLI_NUM);
-
-                                    if($data[0] >= 1) {
-                                        echo "<script type='text/javascript'> alert('La habitación ya existe')</script>";  
-                                    }
-
-                                    else {
-                                        $sql ="INSERT INTO `habitaciones` (`tipo_habitacion`, `tipo_cama`, `estado_hab`) VALUES ('$room','$bed','$place')" ;
-                                        if(mysqli_query($con,$sql)) {
-                                            echo '<script>alert("¡ Habitación agregada !") </script>' ;
-                                        } else {
-                                            echo '<script>alert("Error. Verifique el sistema") </script>' ;
-                                        }
+                                    $sql ="INSERT INTO `habitaciones` (`tipo_habitacion`, `tipo_cama`, `estado_hab`) VALUES ('$room','$bed','$place')" ;
+                                    
+                                    if(mysqli_query($con,$sql)) {
+                                        echo '<script>alert("¡ Habitación agregada !") </script>' ;
+                                    } else {
+                                        echo '<script>alert("Error. Verifique el sistema") </script>' ;
                                     }
                                 }
 							?>

@@ -188,10 +188,10 @@ tr:hover .cut { opacity: 1; }
 			$cin = $row['fecha_entrada'];
 			$cout = $row['fecha_salida'];
 			$meal = $row['comidas'];
-			$ttot = $row['ttot'];
-			$mepr = $row['mepr'];
+			$htot = $row['htot'];
+			$ctot = $row['ctot'];
 			$btot = $row['btot'];
-			$fintot = $row['fintot'];
+			$total = $row['total'];
 			$days = $row['cant_dias'];
 		}
 		
@@ -208,7 +208,7 @@ tr:hover .cut { opacity: 1; }
 		else if($troom=="Habitacion Junior") {
 			$type_of_room = 180;
 		}
-		else if($troom=="Habitacion Individual") {
+		else if($troom=="Habitacion Junior Suite") {
 			$type_of_room = 150;
 		}
 		
@@ -258,7 +258,7 @@ tr:hover .cut { opacity: 1; }
 		<article>
 			<h1></h1>
 			<address >
-				<p><?php echo $title.$fname." ".$lname ?> <br></p>
+				<p><?php echo $title." ".$fname." ".$lname ?> <br></p>
 			</address>
 			<table class="meta">
 				<tr>
@@ -287,7 +287,7 @@ tr:hover .cut { opacity: 1; }
 						<td><span ><?php echo $days; ?> </span></td>
 						<td><span data-prefix>$</span><span ><?php  echo $type_of_room;?></span></td>
 						<td><span ><?php echo $nroom;?> </span></td>
-						<td><span data-prefix>$</span><span><?php echo $ttot; ?></span></td>
+						<td><span data-prefix>$</span><span><?php echo $htot; ?></span></td>
 					</tr>
 					<tr>
 						<td><span ><?php echo $bed; ?>  Cama </span></td>
@@ -301,7 +301,7 @@ tr:hover .cut { opacity: 1; }
 						<td><span ><?php echo $days; ?></span></td>
 						<td><span data-prefix>$</span><span ><?php  echo $type_of_meal?></span></td>
 						<td><span ><?php echo $nroom;?> </span></td>
-						<td><span data-prefix>$</span><span><?php echo $mepr; ?></span></td>
+						<td><span data-prefix>$</span><span><?php echo $ctot; ?></span></td>
 					</tr>
 				</tbody>
 			</table>
@@ -309,7 +309,7 @@ tr:hover .cut { opacity: 1; }
 			<table class="balance">
 				<tr>
 					<th><span >Total</span></th>
-					<td><span data-prefix>$</span><span><?php echo $fintot; ?></span></td>
+					<td><span data-prefix>$</span><span><?php echo $total; ?></span></td>
 				</tr>
 				<tr>
 					<th><span >	Cantidad pagada</span></th>
@@ -317,7 +317,7 @@ tr:hover .cut { opacity: 1; }
 				</tr>
 				<tr>
 					<th><span >Saldo adeudado</span></th>
-					<td><span data-prefix>$</span><span><?php echo $fintot; ?></span></td>
+					<td><span data-prefix>$</span><span><?php echo $total; ?></span></td>
 				</tr>
 			</table>
 		</article>

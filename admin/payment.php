@@ -10,7 +10,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
     <title>Hotel Viñas Queirolo</title>
+
+    <link rel="shortcut icon" type="image/png" href="../images/flaticon.png">
 
 	<!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
@@ -145,10 +148,10 @@
                                                         <td>".$row['nro_habitacion']."</td>
                                                         <td>".$row['comidas']."</td>
                                                         
-                                                        <td>".$row['ttot']."</td>
-                                                        <td>".$row['mepr']."</td>
+                                                        <td>".$row['htot']."</td>
+                                                        <td>".$row['ctot']."</td>
                                                         <td>".$row['btot']."</td>
-                                                        <td>".$row['fintot']."</td>
+                                                        <td>".$row['total']."</td>
                                                         <td><a href=print.php?pid=".$id ." <button class='btn btn-primary'> <i class='fa fa-print' ></i>Imprimir</button></td>
                                                     </tr>";
                                             }
