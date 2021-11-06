@@ -484,14 +484,14 @@
 					
 					if(mysqli_query($con, $rpsql)) {
 						echo "<script type='text/javascript'> alert('Reserva confirmada')</script>";
-						echo "<script type='text/javascript'> window.location='roombook.php'</script>";
+						/*echo "<script type='text/javascript'> window.location='roombook.php'</script>";*/
+					}else{
+						echo "<script type='text/javascript'> alert('No se pudo actualizar la habitación')</script>";
 					}
 				}else{
-					echo "woogogo";
+					echo "<script type='text/javascript'> alert('Pago no guardado')</script>";
 				}
 			}
-
-			echo "sdretre";
 		}	
 	}				
 ?>

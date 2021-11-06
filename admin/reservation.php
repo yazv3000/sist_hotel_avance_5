@@ -144,7 +144,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>No. de habitación *</label>
+                                    <label>Nº de habitación *</label>
                                     <select name="nroom" class="form-control" required>
                                         <option value selected ></option>
                                         <?php

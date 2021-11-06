@@ -48,7 +48,7 @@ ob_start();
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li>
-                            <a href="usersetting.php"><i class="fa fa-user fa-fw"></i> Perfil del usuario</a>
+                            <a href="usersetting.php"><i class="fa fa-user fa-fw"></i>Perfil del usuario</a>
                         </li>
                         <li>
                             <a href="settings.php"><i class="fa fa-gear fa-fw"></i> Configuraciones</a>
@@ -166,7 +166,7 @@ ob_start();
                                     <form method="post">
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <label>Mombre de usuario:</label>
+                                                <label>Nombre de usuario:</label>
                                                 <input name="newus"  class="form-control" placeholder="Ingrese un nombre de usuario">
                                             </div>
                                         </div>
@@ -196,6 +196,8 @@ ob_start();
 							if(mysqli_query($con,$newsql)) {
 							echo' <script language="javascript" type="text/javascript"> alert("Usuario y contraseña agregados") </script>';
 							}
+
+                            header("Location: usersetting.php");
 						}
 					?>
 						
@@ -242,6 +244,8 @@ ob_start();
                     if(mysqli_query($con,$upsql)) {
                         echo' <script language="javascript" type="text/javascript"> alert("Nombre de usario y contraseña actualizados") </script>';
                     }
+
+                    header("Location: usersetting.php");
                 }
                 
                 ob_end_flush();

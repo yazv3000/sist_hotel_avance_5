@@ -157,8 +157,8 @@
                                                 </div>
                                             
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerca</button>
-                                                    <input type="submit" name="log" value="Send" class="btn btn-primary">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                                    <input type="submit" name="log" value="Enviar" class="btn btn-primary">
                                                 </div>
                                             </form>
                                         </div>

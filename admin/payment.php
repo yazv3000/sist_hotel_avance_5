@@ -109,13 +109,13 @@
                                                 <th>Nombre</th>
                                                 <th>Tipo de habitación</th>
                                                 <th>Tipo de cama</th>
-                                                <th>Registrarse</th>
-                                                <th>Revisa</th>
-                                                <th>No de la habitación</th>
-                                                <th>Tipo de comida</th>
-                                                <th>Alquiler de la habitación</th>
-                                                <th>Bed Rent</th>
-                                                <th>Comidas </th>
+                                                <th>Fecha entrada</th>
+                                                <th>Fecha salida</th>
+                                                <th>Nº de la habitación</th>
+                                                <th>Régimen de comida</th>
+                                                <th>Costo habitación</th>
+                                                <th>Costo Camas</th>
+                                                <th>Costo Comidas</th>
                                                 <th>Gr.Total</th>
                                                 <th>Impresión</th>
                                             </tr>

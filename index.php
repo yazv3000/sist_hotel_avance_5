@@ -194,7 +194,7 @@ include('db.php');	 // Conexión a la base de datos
 		<div class="clearfix"> </div>
 	</div>
 
-	<!-- about -->
+	<!-- Acerca de (viñedo) -->
 	<div class="about-wthree" id="about">
 		<div class="container">
 			<div class="ab-w3l-spa">
@@ -217,16 +217,15 @@ include('db.php');	 // Conexión a la base de datos
 				</div>
                 
 				<div class="w3ls-info-about">
-					<h4>Te encantarán todas las comodidades que ofrecemos!</h4>
-					<p>que espero disfruta de tus vaciones con nosotros. </p>
+					<h4>¡Te encantarán todas las comodidades que ofrecemos!</h4>
+					<p>Disfruta de tus vaciones con nosotros. </p>
 				</div>
 			</div>
 			
 			<div class="clearfix"> </div>
 		</div>
 	</div>
- 	<!-- //about -->
-
+ 	<!-- //acerca de (viñedo) -->
 
 	<!-- servicios -->
 	<div class="servicios">
@@ -381,7 +380,7 @@ include('db.php');	 // Conexión a la base de datos
 	</section>
 	<!-- //galería -->
 
-	<!-- rooms & rates -->
+	<!-- Habitaciones & precios -->
     <div class="plans-section" id="rooms">
 		<div class="container">
 			<h3 class="title-w3-agileits title-black-wthree">Habitaciones y tarifas</h3>
@@ -406,7 +405,7 @@ include('db.php');	 // Conexión a la base de datos
 
 							<div class="price-selet">	
 								<h3><span>$</span>320</h3>						
-								<a href="admin/reservation.php" >Reservar ahora</a>
+								<a href="admin/reservation.php">Reservar ahora</a>
 							</div>
 						</div>
 					</div>
@@ -489,7 +488,7 @@ include('db.php');	 // Conexión a la base de datos
 			</div>
 		</div>
 	</div>
-	<!--// rooms & rates -->
+	<!--// habitaciones & precios -->
 
     <!-- visitors -->
 	<div class="w3l-visitors-agile" >
@@ -579,7 +578,7 @@ include('db.php');	 // Conexión a la base de datos
 	</div>
   	<!-- visitors -->
 
-	<!-- contact -->
+	<!-- contacto -->
 	<section class="contact-w3ls" id="contact">
 		<div class="container">
 			<div class="col-lg-6 col-md-6 col-sm-6 contact-w3-agile2" data-aos="flip-left">
